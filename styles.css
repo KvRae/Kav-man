@@ -12,7 +12,6 @@
   --ghost2: #7ed321;
   --ghost3: #5dade2;
   --ghost4: #a084d6;
-    --dpad-size: 50px;
 }
 
 
@@ -82,10 +81,11 @@ header { text-align:center; }
 
 /* walls */
 .wall {
-    box-shadow: inset 0 -3px 6px rgba(255,255,255,0.02);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  box-shadow: inset 0 -3px 6px rgba(255,255,255,0.02);
   border: 2px solid rgba(255,255,255,0.02);
-    background: var(--wall) linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-    border-radius: 6px;
+  background-color: var(--wall);
+  border-radius: 6px;
 }
 
 /* dot */
@@ -243,84 +243,14 @@ footer { margin-top:8px; color: rgba(255,255,255,0.5); font-size:12px; }
         min-width: 70px; /* Allow them to shrink more */
     }
 
+    /* CONTROLS TEXT */
+    .controls p {
+        font-size: 0.85em; /* Shrink control instructions */
+        padding: 0 10px; /* Add some side padding if text is wide */
+    }
 
     /* FOOTER TEXT */
     footer small {
         font-size: 10px;
-    }
-
-    /* --- MOBILE CONTROL STYLES --- */
-    .dpad-container {
-        margin-top: 20px;
-        display: none; /* Hidden by default on desktop */
-        width: 180px; /* Max width for dpad area */
-        height: 180px;
-        touch-action: manipulation; /* Improves touch responsiveness */
-    }
-    .dpad {
-        display: grid;
-        grid-template-columns: repeat(3, var(--dpad-size));
-        grid-template-rows: repeat(3, var(--dpad-size));
-        gap: 5px;
-        justify-content: center;
-        align-items: center;
-    }
-    .dpad-btn {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: #fff;
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        font-size: 1.5em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        user-select: none;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.4);
-        transition: background-color 0.1s;
-    }
-    .dpad-btn:active {
-        background-color: var(--pac);
-        box-shadow: none;
-        transform: translateY(2px);
-    }
-    /* Layout specific buttons in the grid */
-    .dpad-up    { grid-area: 1 / 2 / 2 / 3; }
-    .dpad-left  { grid-area: 2 / 1 / 3 / 2; }
-    .dpad-center {
-        grid-area: 2 / 2 / 3 / 3;
-        font-size: 1.2em;
-        opacity: 0.6;
-        background-color: rgba(108, 122, 224, 0.1);
-    }
-    .dpad-right { grid-area: 2 / 3 / 3 / 4; }
-    .dpad-down  { grid-area: 3 / 2 / 4 / 3; }
-
-
-    /* --- RESPONSIVE MEDIA QUERY --- */
-    @media (max-width: 600px) {
-        /* General body adjustments */
-        body {
-            padding: 10px 0;
-            gap: 5px;
-            justify-content: flex-start; /* Start content at top */
-        }
-
-        /* Enable D-pad controls on mobile */
-        .dpad-container {
-            display: block;
-        }
-        .controls {
-            display: none; /* Hide keyboard controls text */
-        }
-
-        /* Aggressively reduce headers/HUD */
-        header h1 { font-size: 1.8em; }
-        .hud > div { font-size: 0.9em; padding: 6px 8px; min-width: 70px; }
-
-        /* Remove fixed margins causing vertical overflow */
-        .hud { margin-top: 0; }
-        .controls { margin-top: 0; margin-bottom: 0;}
-        footer { margin-top: 0; }
     }
 }

@@ -1,5 +1,5 @@
 // Minimal Pac-Man clone (grid-based)
-// Author: kvrae
+// Author: scaffold for learning and extension
 
 const width = 15;
 const gridElement = document.getElementById('grid');
@@ -313,30 +313,4 @@ gridElement.addEventListener('click', () => {
     // reset entire game
     window.location.reload();
   }
-});
-
-// --- INPUT HANDLING (JavaScript Implementation) ---
-
-// 1. Keyboard Input (for desktop)
-window.addEventListener('keydown', e => {
-    if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
-        e.preventDefault();
-        movePacman(e.key);
-    }
-});
-
-// 2. D-Pad Input (for mobile)
-// These listeners connect the D-pad buttons (styled by your selected CSS) to the game logic.
-document.getElementById('dpad-up').addEventListener('click', () => movePacman('ArrowUp'));
-document.getElementById('dpad-down').addEventListener('click', () => movePacman('ArrowDown'));
-document.getElementById('dpad-left').addEventListener('click', () => movePacman('ArrowLeft'));
-document.getElementById('dpad-right').addEventListener('click', () => movePacman('ArrowRight'));
-// The center button is currently inactive, but ready for a 'pause' function.
-
-// allow clicking on grid to restart after gameover
-gridElement.addEventListener('click', () => {
-    if (gameOver) {
-        // reset entire game
-        window.location.reload();
-    }
 });
