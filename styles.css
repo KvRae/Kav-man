@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap');
 
 :root{
-  --cell: 5vw;
+  --cell: 4.8vh;
   --wall: #0b3b8b;
   --bg: #000;
   --dot: #f7c948;
@@ -30,6 +30,16 @@ body {
     align-items:center;
     gap:12px;
     padding:18px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* This makes the main section take up all available vertical space */
+    flex-grow: 1;
+    /* Ensures main doesn't exceed screen size */
+    overflow: hidden;
 }
 
 header h1 {
@@ -141,7 +151,7 @@ header { text-align:center; }
     left: 0; /* Align perfectly in the cell */
     top: 0;
     /* --- GIF PROPERTIES --- */
-    background-image: url('/assets/img/pac-man.gif');
+    background-image: url('assets/img/pac-man.gif');
     background-size: contain; /* Ensures the whole GIF is visible */
     background-repeat: no-repeat;
     background-position: center;
