@@ -139,6 +139,7 @@ header { text-align:center; }
 .power-4::after {
     background-image: url('assets/img/react.png');
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
 /* pacman */
