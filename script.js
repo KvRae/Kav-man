@@ -314,3 +314,8 @@ gridElement.addEventListener('click', () => {
     window.location.reload();
   }
 });
+// D-Pad Input (for mobile)
+document.getElementById('dpad-up').addEventListener('click', () => movePacman('ArrowUp'));
+document.getElementById('dpad-down').addEventListener('click', () => movePacman('ArrowDown'));
+document.getElementById('dpad-left').addEventListener('click', () => movePacman('ArrowLeft'));
+document.getElementById('dpad-right').addEventListener('click', () => movePacman('ArrowRight'));
