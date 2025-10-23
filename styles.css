@@ -3,7 +3,6 @@
 :root{
     --cell-h: 4.8vh;
     --cell: min(4.5vw, var(--cell-h));
-    --power-size:var(--cell);
   --wall: #0b3b8b;
   --bg: #000;
   --dot: #f7c948;
@@ -104,8 +103,12 @@ header { text-align:center; }
 }
 .power::after {
     content: "";
-    width: var(--power-size);
-    height: var(--power-size);
+    /* * CRITICAL FIX: Set a width and height for the pseudo-element container.
+     * I'm using 20px, but adjust this based on the actual size you want
+     * the power pellet images (flutter-px.png, kotlin.png) to be.
+     */
+    width: 20px;
+    height: 20px;
 
     /* Keep positioning properties */
     position: absolute;
@@ -123,13 +126,11 @@ header { text-align:center; }
 .power-1::after {
     background-image: url('assets/img/flutter.png');
     background-size: contain;
-    background-repeat: no-repeat;
 }
 
 .power-2::after {
     background-image: url('assets/img/kotlin.png');
     background-size: contain;
-    background-repeat: no-repeat;
 }
 
 .power-3::after {
@@ -141,7 +142,6 @@ header { text-align:center; }
 .power-4::after {
     background-image: url('assets/img/react.png');
     background-size: contain;
-    background-repeat: no-repeat;
 }
 
 /* pacman */
