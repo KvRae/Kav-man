@@ -310,7 +310,7 @@ window.addEventListener('keydown', e => {
 // allow clicking on grid to restart after gameover
 gridElement.addEventListener('click', () => {
   if (gameOver) {
-    // reset entire game
+    statusEl.textContent = 'Game restarting...';
     window.location.reload();
   }
 });
