@@ -103,9 +103,8 @@ header { text-align:center; }
 }
 .power::after {
     content: "";
-    width: var(--cell);
-    height: var(--cell);
-
+    width: 86%;
+    height: 86%;
     /* Keep positioning properties */
     position: absolute;
     left: 50%;
