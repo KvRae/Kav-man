@@ -168,6 +168,10 @@ header { text-align:center; }
 
 /* Ghost styles */
 .ghost {
+    background-image: url('assets/img/ghost.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   position:absolute;
   width: 86%;
   height: 86%;
@@ -186,14 +190,17 @@ header { text-align:center; }
 }
 
 /* individual colors */
-.ghost.g1 { background: var(--ghost1); }
-.ghost.g2 { background: var(--ghost2); }
-.ghost.g3 { background: var(--ghost3); }
-.ghost.g4 { background: var(--ghost4); }
+.ghost.g1 { }
+.ghost.g2 { }
+.ghost.g3 {  }
+.ghost.g4 { }
 
 /* frightened ghost */
 .ghost.frightened {
-  background: #6c7ae0;
+    background-image: url('assets/img/ghost-fright.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   filter: brightness(1.1);
 }
 
