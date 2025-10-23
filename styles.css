@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap');
+
 :root{
-  --cell: 28px;
+  --cell: 5vw;
   --wall: #0b3b8b;
   --bg: #000;
   --dot: #f7c948;
@@ -11,16 +13,36 @@
   --ghost4: #a084d6;
 }
 
-* { box-sizing: border-box; margin:0; padding:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+
+* {
+    box-sizing: border-box; margin:0; padding:0;
+}
 body {
-  background: radial-gradient(ellipse at top, #0b1533 0%, #000 60%);
-  color: #eee;
-  min-height: 100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:12px;
-  padding:18px;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background: radial-gradient(ellipse at top, #0b1533 0%, #000 60%);
+    color: #eee;
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+    gap:12px;
+    padding:18px;
+}
+
+header h1 {
+    font-size: 2.5em; /* Large title */
+}
+
+.hud > div {
+    font-size: 1.1em;
+    padding: 8px 12px; /* Slightly larger hit area */
+}
+
+.controls p {
+    font-size: 1em;
 }
 
 header { text-align:center; }
@@ -68,34 +90,71 @@ header { text-align:center; }
   transform: translate(-50%,-50%);
   box-shadow: 0 0 6px rgba(247,201,72,0.6);
 }
-
-/* power pellet */
 .power::after {
-  content: "";
-  width: 12px;
-  height: 12px;
-  background: var(--power);
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  box-shadow: 0 0 10px rgba(255,107,107,0.7);
+    content: "";
+    /* * CRITICAL FIX: Set a width and height for the pseudo-element container.
+     * I'm using 20px, but adjust this based on the actual size you want
+     * the power pellet images (flutter-px.png, kotlin.png) to be.
+     */
+    width: 20px;
+    height: 20px;
+
+    /* Keep positioning properties */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+
+    /* Ensure no conflicting styles from old dot/power pellet setup */
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+/* power pellet */
+/* Custom Power Pellet Images */
+.power-1::after {
+    background-image: url('assets/img/flutter.png');
+    background-size: contain;
+}
+
+.power-2::after {
+    background-image: url('assets/img/kotlin.png');
+    background-size: contain;
+}
+
+.power-3::after {
+    background-image: url('assets/img/android.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.power-4::after {
+    background-image: url('assets/img/react.png');
+    background-size: contain;
 }
 
 /* pacman */
 .pacman {
-  position:absolute;
-  width: 80%;
-  height: 80%;
-  left: 10%;
-  top: 10%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #fff2b3, var(--pac));
-  box-shadow: 0 0 8px rgba(255,212,59,0.6);
-  z-index: 5;
-  transform: rotate(0deg);
-  transition: transform 120ms linear;
+    position:absolute;
+    width: 100%; /* Use 100% of the cell size for the GIF */
+    height: 100%;
+    left: 0; /* Align perfectly in the cell */
+    top: 0;
+    /* --- GIF PROPERTIES --- */
+    background-image: url('/assets/img/pac-man.gif');
+    background-size: contain; /* Ensures the whole GIF is visible */
+    background-repeat: no-repeat;
+    background-position: center;
+    /* ---------------------- */
+
+    border-radius: 0; /* No need for a circle border */
+    background-color: transparent; /* Ensure the background is clear */
+    box-shadow: none; /* Remove the yellow glow */
+    z-index: 5;
+
+    /* Keep the transform for rotation (direction) and transition for smoothness */
+    transform: rotate(0deg);
+    transition: transform 120ms linear;
 }
 
 /* Ghost styles */
@@ -139,3 +198,48 @@ header { text-align:center; }
 /* small helper */
 .controls { margin-top:10px; text-align:center; color: #cdd6f4; max-width:680px;}
 footer { margin-top:8px; color: rgba(255,255,255,0.5); font-size:12px; }
+
+@media (max-width: 600px) {
+    /* GENERAL ADJUSTMENTS */
+    body {
+        padding: 10px 0; /* Reduce padding on body */
+        gap: 8px; /* Reduce gap between sections */
+    }
+    main {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* HEADER TEXT */
+    header h1 {
+        font-size: 1.8em; /* Shrink the main title */
+    }
+
+    /* HUD ELEMENTS */
+    .hud {
+        /* Allow HUD items to wrap/stack if necessary */
+        flex-wrap: wrap;
+        justify-content: space-around; /* Distribute items better */
+        gap: 8px;
+    }
+
+    .hud > div {
+        /* Slightly smaller font for HUD elements */
+        font-size: 0.9em;
+        padding: 6px 8px;
+        min-width: 70px; /* Allow them to shrink more */
+    }
+
+    /* CONTROLS TEXT */
+    .controls p {
+        font-size: 0.85em; /* Shrink control instructions */
+        padding: 0 10px; /* Add some side padding if text is wide */
+    }
+
+    /* FOOTER TEXT */
+    footer small {
+        font-size: 10px;
+    }
+}

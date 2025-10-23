@@ -52,19 +52,26 @@ const directions = {
 function createGrid() {
   gridElement.style.gridTemplateColumns = `repeat(${width}, var(--cell))`;
   gridElement.innerHTML = '';
-  for (let i = 0; i < layout.length; i++) {
-    const div = document.createElement('div');
-    div.classList.add('cell');
-    // walls
-    if (layout[i] === 1) div.classList.add('wall');
-    // dot
-    else if (layout[i] === 0) div.classList.add('dot');
-    // power pellet
-    else if (layout[i] === 4) div.classList.add('power');
-    // keep empties for walkable spaces
-    gridElement.appendChild(div);
-    cells.push(div);
-  }
+    let powerPelletCount = 1; // Start a counter for the custom images
+
+    for (let i = 0; i < layout.length; i++) {
+        const div = document.createElement('div');
+        div.classList.add('cell');
+        // walls
+        if (layout[i] === 1) div.classList.add('wall');
+        // dot
+        else if (layout[i] === 0) div.classList.add('dot');
+        // power pellet <--- MODIFY THIS BLOCK
+        else if (layout[i] === 4) {
+            div.classList.add('power');
+            // ADD UNIQUE CLASS HERE:
+            div.classList.add(`power-${powerPelletCount}`);
+            powerPelletCount++; // Increment the counter
+        }
+        // keep empties for walkable spaces
+        gridElement.appendChild(div);
+        cells.push(div);
+    }
   // place pacman element
   const pac = document.createElement('div');
   pac.className = 'pacman';
