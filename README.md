@@ -1,4 +1,4 @@
-# Minimal Pac‑Man (HTML/CSS/JS)
+# Kav-Man, Pac‑Man clone (HTML/CSS/JS)
 
 <img width="1918" height="957" alt="screencapture-kvrae-github-io-Kav-man-2025-10-27-13_51_43" src="https://github.com/user-attachments/assets/d1511704-249e-4e35-8a59-3bb1fe8a18fa" />
 
