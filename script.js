@@ -36,7 +36,45 @@ const layout = [
 
 const cells = [];
 let pacmanIndex = layout.indexOf(2);
-if (pacmanIndex === -1) pacmanIndex = (Math.floor(layout.length/2));
+if (pacmanIndex !== -1) {
+    // clear original marker so we can relocate it
+    layout[pacmanIndex] = 4;
+}
+
+const topRowStart = width;
+const centerCol = Math.floor(width / 2);
+const preferred = topRowStart + centerCol;
+const isWalkable = v => v === 0 || v === 4 || v === 5;
+
+let found = -1;
+// try exact top-center
+if (isWalkable(layout[preferred])) {
+    found = preferred;
+} else {
+    for (let offset = 1; offset < width; offset++) {
+        const left = preferred - offset;
+        const right = preferred + offset;
+        if (left >= topRowStart && isWalkable(layout[left])) { found = left; break; }
+        if (right < topRowStart + width && isWalkable(layout[right])) { found = right; break; }
+    }
+}
+
+// fallback: any walkable cell in the top row
+if (found === -1) {
+    for (let i = topRowStart; i < topRowStart + width; i++) {
+        if (isWalkable(layout[i])) { found = i; break; }
+    }
+}
+
+// fallback: any walkable cell in whole layout
+if (found === -1) found = layout.findIndex(isWalkable);
+
+// final fallback: center of grid
+if (found === -1) found = Math.floor(layout.length / 2);
+
+pacmanIndex = found;
+// mark the chosen cell as pacman start so resetPositions() continues to work
+layout[pacmanIndex] = 2;
 const ghostStarts = [];
 layout.forEach((v,i) => { if (v === 3) ghostStarts.push(i); });
 
